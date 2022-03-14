@@ -1,4 +1,5 @@
-it('Shows an autocomplete!', () => {
+beforeEach(() => {
+    document.querySelector('#target').innerHTML= '';
     createAutoComplete({
         root: document.querySelector('#target'),
         fetchData(){
@@ -12,6 +13,10 @@ it('Shows an autocomplete!', () => {
             return movie.Title;
         }
     });
+})
+
+it('Shows an autocomplete!', () => {
+    
     const dropdown = document.querySelector('.dropdown');
     
     expect(dropdown.className).not.to.include('is-active');
@@ -21,6 +26,7 @@ it('After searching, dropdown opens up', () => {
     const input = document.querySelector('input');
     input.value = 'avengers';
     input.dispatchEvent(new Event('input'));
+
 
     const dropdown = document.querySelector('.dropdown');
 
